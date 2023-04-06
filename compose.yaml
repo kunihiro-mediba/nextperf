@@ -1,0 +1,50 @@
+services:
+  node:
+    container_name: nextperf-container-node
+    # image: node:18.15.0-bullseye-slim
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - redis
+    environment:
+      LANG: C.UTF-8
+      TZ: UTC
+      REDIS_URL: redis://redis:6379
+      REDIS_POOLSIZE: 10
+    ports:
+      - 3001:3000
+    # volumes:
+    #   - .:/app
+    # working_dir: /app
+    # command: ['npm', 'run', 'start']
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: '1024M'
+
+  redis:
+    container_name: nextperf-container-redis
+    image: redis:6.2.11-alpine3.17
+    environment:
+      LANG: C.UTF-8
+      TZ: UTC
+    ports:
+      - 6379:6379
+    volumes:
+      - ./docker/redis/conf:/usr/local/etc/redis
+    command: ['redis-server', '/usr/local/etc/redis/redis.conf']
+
+  k6:
+    container_name: nextperf-container-k6
+    image: grafana/k6:latest
+    depends_on:
+      - node
+    environment:
+      LANG: C.UTF-8
+      TZ: UTC
+    volumes:
+      - ./docker/k6:/home/k6
+    working_dir: /home/k6
+    command: ['version']

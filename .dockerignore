@@ -1,0 +1,17 @@
+/.idea/
+/.vscode/
+
+/.next
+/k6
+/node_modules/
+
+*.d.ts
+!next-env.d.ts
+*.map
+*.log
+*.swp
+*.lock
+
+._*
+.DS_Store
+Thumbs.db

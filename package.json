@@ -1,0 +1,27 @@
+{
+    "name": "nextperf",
+    "version": "1.0.0",
+    "description": "",
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "ioredis": "^5.3.1",
+        "next": "^13.2.4",
+        "next-session": "^4.0.5",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
+    },
+    "devDependencies": {
+        "@types/k6": "^0.43.2",
+        "@types/node": "18.15.11",
+        "@types/react": "^18.0.33",
+        "@types/react-dom": "^18.0.11",
+        "typescript": "^5.0.3"
+    }
+}
